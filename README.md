@@ -4,7 +4,7 @@ Open source Dao builder setup, Build your Dao, Serve Members, Post;
 
 ----------------------------
 
--ReactJs - Redux = Interface
+-ReactJs - Redux = Frontend
 
 -NodeJs, Express, ( MongoDB, for now ) = Backend
 
@@ -16,4 +16,4 @@ To run this app you will need ->
 
 -Clone this repo to your prefered dir
 
--Perform npm i in both Backend and Interface
+-Perform npm i in both Backend and Interface dirs
