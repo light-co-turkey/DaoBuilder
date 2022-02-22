@@ -1,0 +1,42 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# client dependencies
+reactJs/package-lock.json
+reactJs/node_modules
+reactJs/.pnp
+reactJs/.pnp.js
+# testing
+reactJs/coveragee
+# production
+reactJs/build
+# misc
+reactJs/.DS_Store
+reactJs/.env
+reactJs/.env.local
+reactJs/.env.development.local
+reactJs/.env.test.local
+reactJs/.env.production.local
+reactJs/npm-debug.log*
+reactJs/yarn-debug.log*
+reactJs/yarn-error.log*
+
+# backend dependencies
+nodeJsBackend/package-lock.json
+nodeJsBackend/node_modules
+nodeJsBackend/.pnp
+nodeJsBackend/.pnp.js
+# testing
+nodeJsBackend/coveragee
+# production
+nodeJsBackend/build
+# misc
+nodeJsBackend/.DS_Store
+nodeJsBackend/config
+nodeJsBackend/.env
+nodeJsBackend/.env.local
+nodeJsBackend/.env.development.local
+nodeJsBackend/.env.test.local
+nodeJsBackend/.env.production.local
+nodeJsBackend/npm-debug.log*
+nodeJsBackend/yarn-debug.log*
+nodeJsBackend/yarn-error.log*

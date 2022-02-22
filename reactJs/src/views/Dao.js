@@ -1,0 +1,25 @@
+import React, { useState } from 'react';
+import CreateDao from '../components/CreateDao';
+import CreatePost from '../components/CreatePost';
+import PostList from '../components/PostList';
+import { ToggleSwitch, LinkTextBtn } from '../components/ui/Buttons';
+
+const Dao = () => {
+  const [count, setCount] = useState(3)
+
+  let fieldList = [
+    { text: "View", count: 1, href: "" },
+    { text: "Manage", count: 2, href: "" },
+    { text: "Create", count: 3, href: "" }
+  ]
+
+  return (
+    < div className="dfc jc-c ai-c" style={{ minHeight: "calc(100vh - 15rem)"}}>
+      <ToggleSwitch onSwitch={setCount} value={count} className="h-2 w-80 ml-3 mxw-400" fieldList={fieldList} />
+      {count !== 1 ? null : null}
+      {count !== 2 ? null : null}
+      {count !== 3 ? null : <CreateDao />}
+    </div >)
+};
+
+export default Dao;
