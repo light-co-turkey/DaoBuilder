@@ -11,7 +11,7 @@ module.exports = function validateDaoInput(data) {
 
   // Title checks
   if (Validator.isEmpty(data.title)) {
-    errors.title = "Handle field is required";
+    errors.title = "Title field is required";
   }
   // Handle checks
   if (Validator.isEmpty(data.handle)) {

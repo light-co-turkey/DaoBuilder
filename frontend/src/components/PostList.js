@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { LinkTextBtn, TextBtn } from './ui/Buttons';
 import { useSelector, useDispatch } from "react-redux";
-import { deletePost, editPost, getAllPost, setPosts, setPostsIsLoaded } from "../actions/postActions";
+import { deletePost, editPost, getAllPost } from "../actions/postActions";
 
 import Loading from "./Loading";
 import { Editor } from "react-draft-wysiwyg";
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import PostMetaView from './PostMetaView';
+import { extendLocalList } from '../actions/paramActions';
 
 const PostsList = (props) => {
   const dispatch = useDispatch()
@@ -29,8 +30,7 @@ const PostsList = (props) => {
 
   return (
     <div>
-      <h4 className="p-3">Posts</h4>
-      {post.posts.length <= 0 || post.is ? <h3>No posts yet.</h3>
+      {!post.isLoaded ? <Loading /> : post.posts.length <= 0 ? <h3>No posts yet.</h3>
         :
         <div>
           {errorMsg && <p className="errorMsg">{errorMsg}</p>}
@@ -61,7 +61,7 @@ const PostsList = (props) => {
                 return (
                   <div className="dfc jc-c ai-c w-100 pbt-3" key={id}>
                     <div className="df jc-c ai-c fw pbt-2">
-                      {!userInfo ? null : <TextBtn variant="info" size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>Edit</TextBtn>}
+                      {!userInfo ? null : userInfo._id !== id ? null : <TextBtn variant="info" size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>Edit</TextBtn>}
                       <LinkTextBtn className="ml-2" variant="info" href={"/#/post/" + id} size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>View</LinkTextBtn>
                       {!state[id] ? null : <TextBtn variant="warning" className="ml-2" size="sm" disabled={!userInfo} onClick={() => { dispatch(deletePost({ id: i._id, posts: post.posts })) }}>Del</TextBtn>}
                       {!state[id] ? null : (state[id].edit ? <TextBtn variant="info" size="sm" className="ml-2"

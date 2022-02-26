@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
 import { useDispatch } from 'react-redux';
-import { nestUserPI } from '../actions/paramActions';
+import { nestParamsPI } from '../actions/paramActions';
 
 const ViewImage = props => {
-    const { createdBy, usageType, usersList, variant, size } = props
+    const { createdBy, usageType, usersList, daosList, variant, size, className } = props
 
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(true);
     const [mediaEncode, setMediaEncode] = useState(null);
     const [mediaType, setMediaType] = useState(null);
-
-    let verUserPI = variant === "userPI"
 
     let sizee = size === "lg" ? {
         width: "150px", height: "150px"
@@ -28,7 +26,8 @@ const ViewImage = props => {
 
     const handleOnLoad = () => {
         setIsLoaded(false)
-        dispatch(nestUserPI({handleSets, usageType, usersList, createdBy, setIsLoaded}))
+        if (usersList) {dispatch(nestParamsPI({setIsLoaded, handleSets, usageType, usersList, createdBy}))}
+        if (daosList) {dispatch(nestParamsPI({setIsLoaded, handleSets, usageType, daosList, createdBy}))}
     };
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const ViewImage = props => {
     /* let baseToImg = `data:${mediaType};base64,${mediaEncode}`*/
     return (
         <>{!isLoaded ? <Loading /> :
-            <span className='dfc jc-c ai-c'>
+            <span className={'dfc jc-c ai-c ' + className}>
                 {!mediaEncode || !mediaType ? null :
                     <img className='bra-3' style={sizee} src={mediaEncode} alt="general-media" />}
             </span>

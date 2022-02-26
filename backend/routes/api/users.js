@@ -44,9 +44,10 @@ router.get('/get_all_users/', (req, res) => {
 });
 
 // @route Get Single User Field
-router.get('/get_user_field/:userId', (req, res) => {
+router.get('/get_user_fields/:userId', (req, res) => {
   const userId = req.params.userId
-  User.find({ _id: mongoose.Types.ObjectId(userId) }, { [req.body.field]: 1 }, (error, data) => {
+  let fields = req.body
+  User.find({ _id: mongoose.Types.ObjectId(userId) }, fields, (error, data) => {
     if (error) {
       return console.log(error)
     } else {

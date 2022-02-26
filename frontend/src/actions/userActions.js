@@ -20,6 +20,19 @@ export const getUser = e => dispatch => {
       }
     });
 }
+
+//Get User Fields
+export const getUserFields = async e => {
+  const userId = e.id
+  let fields = e.fields
+  axios
+    .get(`/api/users/get_user_fields/${userId}`, fields)
+    .then(res => {
+      console.log(res.data)
+      return res.data
+    });
+}
+
 // Edit User
 export const editUser = userData => {
   axios

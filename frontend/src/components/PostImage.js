@@ -3,11 +3,13 @@ import Loading from './Loading';
 import { TextBtn } from './ui/Buttons';
 import { postImage } from '../actions/mediaActions';
 import { arrayBuffertoBase64 } from '../utils/basicUtils';
+import { handleMediaMap, nestParamsPI, setAllUsers } from '../actions/paramActions';
+import { useDispatch } from 'react-redux';
 
 const PostImage = props => {
-    const usageType = !props.usageType ? null : props.usageType
-    const createdBy = !props.createdBy ? null : props.createdBy
+    const { usageType, createdBy, sessionType, usersList, className } = props
 
+    const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(true);
     const [arrayBuffer, setArrayBuffer] = useState();
     const [mediaEncode, setMediaEncode] = useState();
@@ -30,6 +32,13 @@ const PostImage = props => {
             usageType: usageType,
             createdBy: createdBy
         }
+
+        if (sessionType === "profile") {
+            let media = {mediaEncode: mediaEncode, mediaType: arrayBuffer.type}
+            let newMap = handleMediaMap(usersList, createdBy, media)
+            localStorage.setItem("usersList", JSON.stringify(newMap))
+            dispatch(setAllUsers(newMap))
+        }
         postImage(postImageReq)
             .then(() => setIsLoaded(true))
     };
@@ -38,8 +47,6 @@ const PostImage = props => {
         let arrayBuffer = event
         setArrayBuffer(arrayBuffer)
         await Main()
-        /* base64String(arrayBuffer) */
-        console.log("mE type: ", typeof arrayBuffer, "mE: ", mediaEncode)
     }
 
     const blob = !arrayBuffer ? null : new Blob([arrayBuffer])
@@ -63,7 +70,7 @@ const PostImage = props => {
         </span>
 
     return (
-        <>{!isLoaded ? <Loading /> :
+        <div className={className}>{!isLoaded ? <Loading /> :
             <span className='dfc jc-c ai-c'>
                 <span className='df'>
                     {inputField}
@@ -71,7 +78,7 @@ const PostImage = props => {
                 </span>
                 {!arrayBuffer ? null : <img className='p-3 bra-3' style={{ width: "150px", height: "150px" }} src={srcBlob} alt="preview" />}
             </span>
-        }</>
+        }</div>
     )
 }
 

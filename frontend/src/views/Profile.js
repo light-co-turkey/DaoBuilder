@@ -8,6 +8,7 @@ import ViewImage from '../components/ViewImage';
 
 import { TextBtn } from "../components/ui/Buttons"
 import { InputGroup, InputPrep } from '../components/ui/Inputs';
+import { filterSingleItem } from '../utils/basicUtils';
 
 export const Profile = e => {
     const dispatch = useDispatch();
@@ -24,6 +25,9 @@ export const Profile = e => {
         dispatch(logoutUser());
     };
 
+    let filtered = filterSingleItem(param.usersList, user.raw._id)
+    let checkUPI = filtered && filtered.mediaBuffer
+
     return (
         <div className="jc-c dfc plr-3 pt-2">
             <div className="df ai-c">
@@ -32,20 +36,20 @@ export const Profile = e => {
                     onClick={(e) => { onLogoutClick(e); history.push("/") }}>
                     Logout</TextBtn>
             </div>
-            {!user.isLoaded ? <Loading /> : 
-            <div className="dfc jc-c p-3 mt-3">
-                <PostImage usageType="userPI" createdBy={user.raw._id} />
-                <span className='p-3'><ViewImage size="lg" usageType="userPI" createdBy={user.raw._id} usersList={param.usersList} /></span>
-                <h5 className='pb-3'>{user.raw.name} {user.raw.surname}</h5>
-                <InputGroup className="pb-3">
-                    <InputPrep variant="pillL">Email</InputPrep>
-                    <InputPrep variant="pillR">{user.raw.email}</InputPrep>
-                </InputGroup>
-                {!user.raw.phone ? null : <InputGroup>
-                    <InputPrep variant="pillL">Phone</InputPrep>
-                    <InputPrep variant="pillR">{user.raw.phone}</InputPrep>
-                </InputGroup>}
-            </div>}
+            {!user.isLoaded ? <Loading /> :
+                <div className="dfc jc-c p-3 mt-3">
+                    {!checkUPI ? null : <PostImage className="mb-3" usageType="userPI" createdBy={user.raw._id} sessionType="profile" usersList={param.usersList} />}
+                    {checkUPI ? null : <ViewImage size="lg" className='p-3' usageType="userPI" createdBy={user.raw._id} usersList={param.usersList} />}
+                    <h5 className='pb-3'>{user.raw.name} {user.raw.surname}</h5>
+                    <InputGroup className="pb-3">
+                        <InputPrep variant="pillL">Email</InputPrep>
+                        <InputPrep variant="pillR">{user.raw.email}</InputPrep>
+                    </InputGroup>
+                    {!user.raw.phone ? null : <InputGroup>
+                        <InputPrep variant="pillL">Phone</InputPrep>
+                        <InputPrep variant="pillR">{user.raw.phone}</InputPrep>
+                    </InputGroup>}
+                </div>}
         </div>
     )
 }

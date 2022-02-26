@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { mongoDateToHuman } from "../utils/basicUtils";
+import { extendLocalList } from "../actions/paramActions";
+import { filterSingleItem, mongoDateToHuman } from "../utils/basicUtils";
 import Loading from "./Loading";
 import ViewImage from "./ViewImage";
 
@@ -10,7 +11,9 @@ const PostMetaView = props => {
     let createdBy = postMeta.createdBy
 
     useEffect(() => {
-        setUserInfo(usersList.filter(x => x._id === createdBy)[0])
+        filterSingleItem(usersList, createdBy).then(x => {
+            setUserInfo(x)
+        })
     }, [isLoaded]);
 
     return (

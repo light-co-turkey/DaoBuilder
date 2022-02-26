@@ -25,7 +25,7 @@ import { Profile } from './views/Profile';
 import { getUser } from './actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import PostView from './components/PostViewt';
-import { getAllUsers, setAllUsers } from './actions/paramActions';
+import { getAllUsers, getAllDaos } from './actions/paramActions';
 import Dao from './views/Dao';
 
 const appBody = {
@@ -67,10 +67,12 @@ const App = () => {
 
   useEffect(() => {
     console.log()
-    if (localStorage.usersList == null) { dispatch(getAllUsers()) }
+    if (localStorage.usersList == null) { dispatch(getAllUsers({actionType: "landing"})) }
+    if (localStorage.daosList == null) { dispatch(getAllDaos({actionType: "landing"})) }
     if (!auth.isAuthenticated) { } else { dispatch(getUser(auth.user.id)) }
+    /* console.log(JSON.parse(localStorage.usersList)) */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.isAuthenticated, param.isLoaded])
+  }, [auth.isAuthenticated])
 
   return (
     <>

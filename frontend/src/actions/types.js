@@ -12,3 +12,5 @@ export const SET_USER_PROPS = "SET_USER_PROPS";
 //Param
 export const SET_PARAM_IS_LOADED = "SET_PARAM_IS_LOADED"
 export const SET_USERS_LIST = "SET_USERS_LIST"
+export const SET_DAOS_LIST = "SET_DAOS_LIST"
+export const SET_PARAM_PROPS = "SET_PARAM_PROPS"

@@ -35,4 +35,15 @@ router.post("/create", (req, res) => {
         });
 });
 
+// @route Get Users List
+router.get('/get_all_daos/', (req, res) => {
+    Dao.find({}, { _id: 1, handle: 1, title: 1, owner: 1 }, (error, data) => {
+        if (error) {
+            return res.json(error)
+        } else {
+            res.json(data)
+        }
+    })
+});
+
 module.exports = router;

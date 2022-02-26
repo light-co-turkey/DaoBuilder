@@ -166,6 +166,7 @@ button {background-color: inherit;}
   border-right: 0;
 }
 .fieldList div:last-child {
+  border-left: 0;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
@@ -175,59 +176,4 @@ button {background-color: inherit;}
   font-weight: 900;
   justify-content: center;
   align-items: center;
-}
-
-//Info
-.info {
-  color: #65A3FF;
-  border-color: #65A3FF;
-}
-.info:hover {
-/*     border: none !important; */
-  color: white !important;
-  background-color: #65A3FF !important;
-}
-.info:active {
-/*     border: none !important; */
-  color: white !important;
-  background-color: #65A3FF !important;
-}
-
-//Refresh in button
-.info svg {
-  fill: #65A3FF !important;
-}
-.info:hover svg {
-  fill: white !important;
-}
-
-//Warning
-.warning {
-  border-color: #ffc107;
-  color: #ffc107;
-}
-.warning:hover {
-/*     border: none !important; */
-  color: white !important;
-  background-color: #ffc107 !important;
-}
-.warning:active {
-/*     border: none !important; */
-  color: white !important;
-  background-color: #ffc107 !important;
-}
-//Alert
-.alert {
-  border-color: #ffc107;
-  color: #ffc107;
-}
-.alert:hover {
-/*     border: none !important; */
-  color: white !important;
-  background-color: #ffc107 !important;
-}
-.alert:active {
-/*     border: none !important; */
-  color: white !important;
-  background-color: #ffc107 !important;
 }

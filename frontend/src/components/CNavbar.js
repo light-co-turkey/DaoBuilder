@@ -68,7 +68,7 @@ const CNavbar = props => {
         <NewsBtn style={imgStyles} fill={clientLoc === "/" ? "#65A3FF" : "white"} />
         <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#65A3FF" } : { color: "white" }}>posts</p>
       </a>
-      <a href="#/dao" className="mr-3">
+      <a href="#/dao" className="">
         <DaoBtn style={imgStyles} fill={clientLoc === "/dao" ? "#65A3FF" : "white"} />
         <p className="f-3 td-n" style={clientLoc === "/dao" ? { color: "#65A3FF" } : { color: "white" }}>daos</p>
       </a>

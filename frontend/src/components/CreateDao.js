@@ -42,12 +42,12 @@ const CreateDao = props => {
         <div className="dfc jc-c ai-c p-3 mxw-30r ma">
             <div>
                 {errors.title ? (
-                    <AlertCard variant="warning">
+                    <AlertCard variant="alert-card">
                         {errors.title}
                     </AlertCard>
                 ) : null}
                 {errors.handle ? (
-                    <AlertCard variant="warning">
+                    <AlertCard variant="alert-card">
                         {errors.handle}
                     </AlertCard>
                 ) : null}
